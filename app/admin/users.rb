@@ -1,4 +1,5 @@
 ActiveAdmin.register User do
+  menu label: "Students"
 
   permit_params :name, :email, :password
 

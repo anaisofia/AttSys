@@ -7,8 +7,24 @@ ActiveAdmin.register Course do
 
   form do |f|
     inputs "Course Details" do
-      input :user
       input :title
+      f.input :start, as: :datepicker,
+                      datepicker_options: {
+                        firstDay: 1,
+                        showButtonPanel: true,
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: "DD, d MM, yy"
+                      }
+      f.input :finish, as: :datepicker,
+                    datepicker_options: {
+                      firstDay: 1,
+                      showButtonPanel: true,
+                      changeMonth: true,
+                      changeYear: true,
+                      dateFormat: "DD, d MM, yy"
+                    }
+      input :user
       input :level
       input :teacher
     end

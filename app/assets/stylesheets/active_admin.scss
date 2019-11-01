@@ -11,7 +11,23 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+$skinMainFirstColor: #e09626!default;
+$skinMainSecondColor: #b8babe!default;
+$skinBorderWindowColor: #c7c4bb!default;
+$skinBorderRadius: 4px!default;
+$skinTablePadding: 10px!default;
+
+@import "wigu/active_admin_theme";
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+#header h1.site_title {
+  text-indent: 0%;
+  padding-left: 30px;
+img {
+    height: 25px;
+    margin-top: 7px;
+  }
+}
