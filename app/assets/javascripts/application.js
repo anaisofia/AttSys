@@ -12,6 +12,11 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery.min
+//= require jquery.scrolly.min
+//= require skel.min
+//= require util
+//= require main
 //= require turbolinks
 //= require_tree .
 //= require chartkick
