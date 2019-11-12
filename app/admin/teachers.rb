@@ -13,6 +13,31 @@ ActiveAdmin.register Teacher do
     actions
   end
 
+  form do |f|
+    inputs "Create New Teacher" do
+      input :name
+      input :email
+      input :password
+      input :address
+      input :phone
+      input :summary
+      input :birthdate
+      input :nationality
+      input :active
+    end
+    actions
+  end
+
+  controller do
+    def update
+      if (params[:teacher][:password].blank? && params[:teacher][:password_confirmation].blank?)
+        params[:teacher].delete("password")
+        params[:teacher].delete("password_confirmation")
+      end
+      super
+    end
+  end
+
   scope :all
   scope :active
   scope :inactive

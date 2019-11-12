@@ -1,5 +1,5 @@
 ActiveAdmin.register Course do
-  permit_params :title, :start, :finish, :active, :user_id, :level_id, :teacher_id
+  permit_params :title, :start, :finish, :active, :user_ids, :level_id,  :teacher_id, :courses_users, user_ids:[]
 
   scope :all
   scope :active
@@ -8,6 +8,7 @@ ActiveAdmin.register Course do
   form do |f|
     inputs "Course Details" do
       input :title
+      input :level
       f.input :start, as: :datepicker,
                       datepicker_options: {
                         firstDay: 1,
@@ -24,11 +25,30 @@ ActiveAdmin.register Course do
                       changeYear: true,
                       dateFormat: "DD, d MM, yy"
                     }
-      input :user
-      input :level
+      input :users
       input :teacher
     end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :title
+      row :level
+      row :start
+      row :finish
+      row :active
+    end
+    active_admin_comments
+  end
+
+  sidebar "Students", only: :show do
+    attributes_table do
+      row 'Name' do |n|
+        link_to n.users.map(&:name).join("<br />").html_safe
+      end
+      row :teacher
+    end
   end
 
 # Marcar curso como activo
