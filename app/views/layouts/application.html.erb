@@ -10,11 +10,12 @@
   </head>
 
   <body>
+    <%= render 'shared/navbar2' %>
+
     <!-- Alerts -->
     <% if notice %> <div class="alert alert-info" role="alert"> <%= notice %> </div> <% end %>
     <% if notice %> <div class="alert alert-warning" role="alert"> <%= alert %> </div> <% end %>
-    
-    <%= render 'shared/navbar' %>
+
     <%= yield %>
   </body>
 </html>

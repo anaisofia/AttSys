@@ -1,4 +1,5 @@
 class TeachersController < InheritedResources::Base
+  protect_from_forgery
 
   private
 

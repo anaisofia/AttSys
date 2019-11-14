@@ -1,5 +1,6 @@
 class LevelsController < InheritedResources::Base
   include ActiveModel::MassAssignmentSecurity
+  protect_from_forgery
 
 def create
 end

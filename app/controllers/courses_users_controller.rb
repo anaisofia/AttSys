@@ -1,5 +1,6 @@
 class CoursesUsersController < InheritedResources::Base
-
+  protect_from_forgery
+  
   private
 
     def courses_user_params

@@ -1,4 +1,5 @@
 class UsersController < InheritedResources::Base
+  protect_from_forgery
 
   private
 

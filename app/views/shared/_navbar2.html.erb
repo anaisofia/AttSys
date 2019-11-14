@@ -1,32 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Dynamic Manager  </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="<%= root_path %>">Dynamic English Manager</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <button type="button" class="nav-link"><%= link_to "Log in as a Student", new_user_session_path %></button>
-      </li>
-      <li class="nav-item">
-        <button type="button" class="nav-link"><%= link_to "Log in as a Teacher", new_teacher_session_path %></button>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          <% if user_signed_in? %>
+            <%= current_user.name %>
+          <% elsif teacher_signed_in? %>
+            <%= current_teacher.name %>
+          <% else %>
+            Access
+          <% end %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Courses</a>
-          <a class="dropdown-item" href="#">My profile</a>
-          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= new_teacher_session_path %>">Teacher's Log In</a>
+          <a class="dropdown-item" href="<%= new_user_session_path %>">Student's Log In</a>
 
-          <button class="dropdown-item btn btn-outline-info my-2 my-sm-0"> <%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
+          <% if user_signed_in? || teacher_signed_in? %>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="GET">Log Out</a>
+          <% end %>
+
         </div>
       </li>
+      <% if user_signed_in? || teacher_signed_in? %>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= courses_path %>">My Courses <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Resources</a>
+      </li>
+      <% elsif %>
+
+      <% end %>
+
     </ul>
+    <!-- aquí puedo mover el dropdown -->
   </div>
 </nav>
