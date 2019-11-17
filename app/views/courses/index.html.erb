@@ -19,7 +19,7 @@
         <td><%= course.title %></td>
         <td><%= course.start %></td>
         <td><%= course.finish %></td>
-        <td><%= course.users %></td>
+        <td><%= course.users.map(&:name).join("<br />").html_safe %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>

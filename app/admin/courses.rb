@@ -10,21 +10,21 @@ ActiveAdmin.register Course do
       input :title
       input :level
       f.input :start, as: :datepicker,
-                      datepicker_options: {
-                        firstDay: 1,
-                        showButtonPanel: true,
-                        changeMonth: true,
-                        changeYear: true,
-                        dateFormat: "DD, d MM, yy"
-                      }
+      datepicker_options: {
+        firstDay: 1,
+        showButtonPanel: true,
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "DD, d MM, yy"
+      }
       f.input :finish, as: :datepicker,
-                    datepicker_options: {
-                      firstDay: 1,
-                      showButtonPanel: true,
-                      changeMonth: true,
-                      changeYear: true,
-                      dateFormat: "DD, d MM, yy"
-                    }
+      datepicker_options: {
+        firstDay: 1,
+        showButtonPanel: true,
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "DD, d MM, yy"
+      }
       input :users
       input :teacher
     end
@@ -44,37 +44,37 @@ ActiveAdmin.register Course do
 
   sidebar "Students", only: :show do
     attributes_table do
-      row 'Name' do |n|
-        link_to n.users.map(&:name).join("<br />").html_safe
+      row 'Names' do |n|
+        raw(n.users.map{ |n| raw(link_to(n.name, admin_user_path(n))) }.join("<br />"))
       end
       row :teacher
     end
   end
 
-# Marcar curso como activo
+  # Marcar curso como activo
   action_item :activate, only: :show do
     link_to "Mark as Active", activate_admin_course_path(course), method: :put if !course.active?
   end
 
-# Marcar curso como inactivo
+  # Marcar curso como inactivo
   action_item :activate, only: :show do
     link_to "Mark as Inactive", deactivate_admin_course_path(course), method: :put if course.active?
   end
 
-# ActionItem para marcar curso como activo
+  # ActionItem para marcar curso como activo
   member_action :activate, method: :put do
     course = Course.find(params[:id])
     course.update(active: Time.zone.now)
     redirect_to admin_course_path(course)
   end
 
-# ActionItem para dar marcar curso como inactivo
+  # ActionItem para dar marcar curso como inactivo
   member_action :deactivate, method: :put do
     course = Course.find(params[:id])
     course.update(active: nil)
     redirect_to admin_course_path(course)
   end
 
-# filter :level, as: :select
+  # filter :level, as: :select
 
 end
