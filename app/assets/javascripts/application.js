@@ -24,3 +24,11 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require moment
+//= require fullcalendar
+//= require fullcalendar/locale-all
+
+$(document).ready(function() {
+    $('#calendar').fullcalendar({
+    })
+});
