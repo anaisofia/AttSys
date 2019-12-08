@@ -27,8 +27,3 @@
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/locale-all
-
-$(document).ready(function() {
-    $('#calendar').fullcalendar({
-    })
-});

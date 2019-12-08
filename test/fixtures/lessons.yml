@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  total: MyString
+  start: 2019-11-30 18:43:39
+  end: 2019-11-30 18:43:39
+  course: one
+  status: one
+
+two:
+  title: MyString
+  total: MyString
+  start: 2019-11-30 18:43:39
+  end: 2019-11-30 18:43:39
+  course: two
+  status: two

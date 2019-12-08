@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_232536) do
+ActiveRecord::Schema.define(version: 2019_12_01_165038) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_232536) do
     t.integer "level_id"
     t.integer "teacher_id"
     t.string "owner_id"
+    t.integer "hours"
     t.index ["level_id"], name: "index_courses_on_level_id"
     t.index ["owner_id"], name: "index_courses_on_owner_id"
     t.index ["teacher_id"], name: "index_courses_on_teacher_id"
@@ -64,10 +65,28 @@ ActiveRecord::Schema.define(version: 2019_11_12_232536) do
     t.index ["user_id"], name: "index_courses_users_on_user_id"
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.string "title"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer "course_id"
+    t.integer "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["status_id"], name: "index_lessons_on_status_id"
+  end
+
   create_table "levels", force: :cascade do |t|
     t.string "title"
     t.string "code"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

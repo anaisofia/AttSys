@@ -12,6 +12,14 @@ ActiveAdmin.register User do
     actions
   end
 
+  index do
+    id_column
+    column :name
+    column :email
+    column :courses
+    actions
+  end
+
   controller do
     def update
       if (params[:user][:password].blank? && params[:user][:password_confirmation].blank?)
@@ -21,6 +29,7 @@ ActiveAdmin.register User do
       super
     end
   end
+
 
   sidebar "Courses", only: :show do
     attributes_table do
