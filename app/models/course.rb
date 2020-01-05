@@ -3,6 +3,7 @@ class Course < ApplicationRecord
   belongs_to :level
   belongs_to :teacher
   has_many :lessons
+  accepts_nested_attributes_for :lessons
 
   scope :active, ->{ where.not(active: nil)}
   scope :inactive, ->{ where(active: nil)}

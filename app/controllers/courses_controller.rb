@@ -6,15 +6,17 @@ class CoursesController < InheritedResources::Base
   # GET /courses
   # GET /courses.json
   def index
-    if user_signed_in? or teacher_signed_in?
+    if teacher_signed_in?
       @courses = Course.where(courses: {teacher: current_teacher, active: true})
+    elsif user_signed_in?
+      @courses = Course.where(courses: {courses_user: current_user})
     end
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
-    redirect_to root_path if current_user.teacher? && !@course.users.include?(current_user)
+    # redirect_to root_path if current_user.teacher? && !@course.users.include?(current_user)
     # @lessons = Lesson.where(course_id: (params[:id])).order('date DESC')
   end
 
@@ -52,9 +54,13 @@ class CoursesController < InheritedResources::Base
   private
 
   def course_params
-    params.require(:course).permit(:title, :start, :finish, :user_ids, :level_id, :teacher_id, :active, :hours)
-    params.require(:user).permit(:user_ids)
+    params.require(:course).permit(:title, :start, :finish, :user_ids, :level_id, :teacher_id, :active, :hours, :users, lessons_attributes: [:id, :title, :start, :end, :course_id, :status_id])
+    params.require(:user).permit(:user_ids, :user_id)
     params.require(:courses_users).permit(:user_ids)
+  end
+
+  def set_course
+    @course = Course.find(params[:id])
   end
 
 end

@@ -1,6 +1,6 @@
 ActiveAdmin.register Course do
 
-  permit_params :title, :start, :finish, :active, :user_ids, :level_id,  :teacher_id, :courses_users, :hours, user_ids:[], lesson_ids: [],
+  permit_params :title, :start, :finish, :active, :user_ids, :level_id,  :teacher_id, :users, :courses_users, :hours, user_ids:[], lesson_ids:[], users_ids:[],
   lesson_attributes: [:title, :start, :end, :course_id, :status_id]
 
   scope :all
@@ -13,7 +13,7 @@ ActiveAdmin.register Course do
     column :title
     column :start
     column :finish
-    column :users
+    column :users, multiple: true
     column :level
     column :teacher
     actions
@@ -42,7 +42,7 @@ ActiveAdmin.register Course do
         ],
       }
       input :hours
-      input :users, as: :selected_list
+      input :users
       input :teacher
     end
     actions

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :lessons
   resources :statuses
   resources :courses_users
   resources :levels
-  resources :courses
+  resources :courses do
+    resources :lessons
+  end
 
   devise_for :users
     get 'users/:id' => 'users#show', as: :user

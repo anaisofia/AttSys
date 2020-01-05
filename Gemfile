@@ -8,14 +8,14 @@ gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem "puma", ">= 3.12.2"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-gem "chartkick"
+gem "chartkick", ">= 3.3.0"
 gem 'groupdate'
 gem 'active_admin_theme'
 gem 'bootstrap', '~> 4.3.1'

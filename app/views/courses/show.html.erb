@@ -16,9 +16,17 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @course.users %>
+  <strong>Student(s):</strong>
+  <%= @course.users.map(&:name).join("<br />").html_safe %>
 </p>
 
+<h2>Lessons</h2>
+<% for lesson in @course.lessons %>
+    <ul>
+      <li><%= lesson.title %></li>
+  </ul>
+<% end %>
+
 <%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Add Lesson', course_lessons_path(@course) %> |
 <%= link_to 'Back', courses_path %>
