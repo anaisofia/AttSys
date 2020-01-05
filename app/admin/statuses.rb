@@ -1,6 +1,14 @@
 ActiveAdmin.register Status do
 
-  permit_params :name
+  permit_params :name, :color
+
+  form do |f|
+    inputs "Available Statuses" do
+      input :name
+      f.input :color, as: :color_picker
+    end
+    actions
+  end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

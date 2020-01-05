@@ -48,10 +48,6 @@ ActiveAdmin.register Course do
     actions
   end
 
-  # 27.times do |lesson|
-  #   @lesson = Lesson.create
-  # end
-
   show do
     attributes_table do
       row :title
@@ -75,7 +71,7 @@ ActiveAdmin.register Course do
   sidebar "Lessons", only: :show do
     attributes_table do
       row 'title' do |n|
-        raw(n.lessons.map{ |n| raw(link_to(n.title, lesson_path(n))) }.join("<br />"))
+        raw(n.lessons.map{ |n| raw(link_to(n.title, admin_lesson_path(n))) }.join("<br />"))
       end
       row :teacher
     end
