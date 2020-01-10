@@ -1,3 +1,6 @@
+<br>
+<br>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -22,9 +25,23 @@
 
 <h2>Lessons</h2>
 <% for lesson in @course.lessons %>
-    <ul>
-      <li><%= lesson.title %></li>
-  </ul>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Lesson Title</th>
+      <th scope="col">Status</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= lesson.title %></th>
+      <td><%= lesson.status.name %></td>
+      <td><%= link_to 'Click to edit', edit_course_lesson_path(@course, lesson) %></td>
+    </tr>
+  </tbody>
+</table>
 <% end %>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |

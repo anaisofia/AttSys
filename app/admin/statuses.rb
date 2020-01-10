@@ -7,7 +7,14 @@ ActiveAdmin.register Status do
       input :name
       f.input :color, as: :color_picker
     end
-    actions
+    f.actions
+  end
+
+  index do
+    column :id
+    column :name
+    column :color, as: :color
+  actions
   end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

@@ -21,7 +21,7 @@ class LessonsController < InheritedResources::Base
 
         respond_to do |format|
          if @lesson.save
-            format.html { redirect_to course_lessons_path(@course), notice: 'Lesson was successfully created.' }
+            format.html { redirect_to course_lessons_path(@lesson), notice: 'Lesson was successfully created.' }
             format.json { render :show, status: :created, location: @lesson }
          else
             format.html { render :new }
@@ -34,12 +34,12 @@ class LessonsController < InheritedResources::Base
 # PATCH/PUT /lessons/1.json
   def update
     respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to lesson_course_path(@lesson), notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+      if @lesson.update(lesson_params)
+        format.html { redirect_to course_lesson_path(@lesson), notice: 'Lesson was successfully updated.' }
+        format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,9 +47,9 @@ class LessonsController < InheritedResources::Base
 # DELETE /lessons/1
 # DELETE /lessons/1.json
   def destroy
-    @course.destroy
+    @lesson.destroy
      respond_to do |format|
-      format.html { redirect_to lesson_courses_path(@lesson), notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to lesson_courses_path(@lesson), notice: 'Lesson was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
