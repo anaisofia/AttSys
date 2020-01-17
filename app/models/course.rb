@@ -13,7 +13,7 @@ class Course < ApplicationRecord
 
   def create_lessons
     27.times do |l|
-      self.lessons.build(title: "Lesson N°: #{l+1}", status_id: 6)
+      self.lessons.build(title: "Programmed session", status_id: 6)
     end
   end
 

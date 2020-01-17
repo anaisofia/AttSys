@@ -1,15 +1,15 @@
 class CoursesController < InheritedResources::Base
   protect_from_forgery
+
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! && :authenticate_teacher!
 
   # GET /courses
   # GET /courses.json
   def index
-    if teacher_signed_in?
-      @courses = Course.where(courses: {teacher: current_teacher, active: true})
-    elsif user_signed_in?
-      @courses = Course.where(courses: {courses_user: current_user})
+    if user_signed_in?
+      @courses = current_entity.courses.active
+    elsif teacher_signed_in?
+      @courses = Course.where(courses: {teacher: current_entity, active: true})
     end
   end
 

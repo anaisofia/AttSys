@@ -1,6 +1,6 @@
 class Lesson < ApplicationRecord
   belongs_to :course
-  validates :status, presence: true, uniqueness: true
+  validates :status, presence: true
 
   belongs_to :status
 
