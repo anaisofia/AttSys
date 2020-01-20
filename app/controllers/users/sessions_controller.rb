@@ -3,6 +3,7 @@
 class Users::SessionsController < Devise::SessionsController
     include Accessible
     skip_before_action :check_user, only: :destroy
+    protect_from_forgery prepend: true, with: :exception
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

@@ -1,4 +1,4 @@
-class CoursesController < InheritedResources::Base
+ class CoursesController < InheritedResources::Base
   protect_from_forgery
 
   before_action :set_course, only: [:show, :edit, :update, :destroy]
@@ -16,6 +16,12 @@ class CoursesController < InheritedResources::Base
   # GET /courses/1
   # GET /courses/1.json
   def show
+    #avoid users to see other students courses
+    if user_signed_in?
+      redirect_to courses_path if !@course.users.include?(current_entity)
+    elsif teacher_signed_in?
+     redirect_to courses_path if @course.teacher != current_entity
+   end
     # redirect_to root_path if current_user.teacher? && !@course.users.include?(current_user)
     # @lessons = Lesson.where(course_id: (params[:id])).order('date DESC')
   end
